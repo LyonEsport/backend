@@ -68,6 +68,7 @@ class OrderServiceTest {
 
     Bill createBill() {
         Bill bill = new Bill();
+        bill.setIsPayed(0);
         return bill;
     }
 
