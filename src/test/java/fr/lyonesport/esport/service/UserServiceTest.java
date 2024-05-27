@@ -12,15 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.UserRepository;
+import fr.lyonesport.esport.service.exception.UserNotFoundException;
 
 class UserServiceTest {
 
     private final UserRepository userRepository = mock(UserRepository.class);
-    private final UserService userService;
-
-    public UserServiceTest(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService = new UserService(userRepository);
 
     @BeforeEach
     void setUp() {
@@ -28,7 +25,7 @@ class UserServiceTest {
     }
 
     @Test
-    void user_found_in_db_with_email() {
+    void user_found_in_db_with_email() throws UserNotFoundException {
         String emailToTest = "test@mail.com";
         User user = userService.find(emailToTest);
         assertNotNull(user);
@@ -36,8 +33,23 @@ class UserServiceTest {
     }
 
     @Test
+    void user_not_found_in_db_with_email() {
+        String emailToTest = "test_not_found@mail.com";
+        assertThrows(UserNotFoundException.class, () -> userService.find(emailToTest));
+    }
+
+    @Test
     void email_not_good_format() {
-    
+        String emailToTest = "testmailcom";
+        boolean isNotGoodFormat = userService.checkMailFormat(emailToTest);
+        assertFalse(isNotGoodFormat);
+    }
+
+    @Test
+    void email_good_format() {
+        String emailToTest = "test@mail.com";
+        boolean isGoodFormat = userService.checkMailFormat(emailToTest);
+        assertTrue(isGoodFormat);
     }
 
     Optional<User> createUser() {
