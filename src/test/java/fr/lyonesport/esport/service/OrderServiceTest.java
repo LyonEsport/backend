@@ -2,6 +2,8 @@ package fr.lyonesport.esport.service;
 
 import fr.lyonesport.esport.data.*;
 import fr.lyonesport.esport.repository.OrderRepository;
+import fr.lyonesport.esport.service.exception.BillMustNotBePaidException;
+import fr.lyonesport.esport.service.exception.QuantityException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,21 +17,21 @@ class OrderServiceTest {
     private final OrderService orderService = new OrderService(orderRepository);
 
     @Test
-    void save_order() {
+    void save_order() throws BillMustNotBePaidException {
         OrderService.save(createOrder());
         verify(orderRepository, times(1)).save(any(Order.class));
     }
 
     @Test
-    void error_when_saving_on_payed_bill() {
+    void error_when_saving_on_payed_bill() throws BillMustNotBePaidException {
         OrderService.save(createOrderPayedBill());
-        assertThrows(IllegalArgumentException.class, () -> OrderService.save(createOrder0Quantity()));
+        assertThrows(BillMustNotBePaidException.class, () -> OrderService.save(createOrder0Quantity()));
     }
 
     @Test
-    void error_when_saving_with_0_or_less_quantity() {
+    void error_when_saving_with_0_or_less_quantity() throws BillMustNotBePaidException {
         OrderService.save(createOrder0Quantity());
-        assertThrows(IllegalArgumentException.class, () -> OrderService.save(createOrder0Quantity()));
+        assertThrows(QuantityException.class, () -> OrderService.save(createOrder0Quantity()));
     }
 
     Order createOrder0Quantity() {
