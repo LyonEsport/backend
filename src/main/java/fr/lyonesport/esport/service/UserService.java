@@ -13,7 +13,15 @@ import fr.lyonesport.esport.service.exception.UserNotFoundException;
 public class UserService {
 
     // developper la regex
-    private static final String REGEX = "^(.+)@(\\S+)$";
+    private static final String REGEX_EMAIL = "^(.+)@(\\S+)$";
+
+    // (?=.*[A-Z]) : Vérifie qu'il y a au moins une lettre majuscule
+    // (?=.*[a-z]) : Vérifie qu'il y a au moins une lettre minuscule
+    // (?=.*\d) : Vérifie qu'il y a au moins un chiffre
+    // (?=.*[@$!%*?&]) : Vérifie qu'il y a au moins un des symboles spéciaux suivants : @, $, !, %, *, ?, &
+    // [A-Za-z\d@$!%*?&]{16,} : Vérifie que la chaîne contient uniquement les caractères spécifiés
+    // (lettres majuscules et minuscules, chiffres et symboles spéciaux) et qu'elle a une longueur d'au moins 16 caractères
+    private static final String REGEX_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{16,}$";
 
     private final UserRepository userRepository;
 
@@ -27,6 +35,10 @@ public class UserService {
     }
 
     public boolean checkMailFormat(String emailToTest) {
-        return Pattern.compile(REGEX).matcher(emailToTest).matches();
+        return Pattern.compile(REGEX_EMAIL).matcher(emailToTest).matches();
+    }
+
+    public boolean checkPasswordFormat(String passwordToTest) {
+        return Pattern.compile(REGEX_PASSWORD).matcher(passwordToTest).matches();
     }
 }
