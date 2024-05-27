@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentModeRepository extends JpaRepository<PaymentMode, Long> {
+    PaymentMode findByLabel(String label);
 }

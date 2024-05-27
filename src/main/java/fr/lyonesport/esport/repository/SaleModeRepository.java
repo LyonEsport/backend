@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SaleModeRepository extends JpaRepository<SaleMode, Long> {
+    SaleMode findByLabel(String label);
 }
