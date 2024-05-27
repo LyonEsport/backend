@@ -12,6 +12,7 @@ import fr.lyonesport.esport.service.exception.UserNotFoundException;
 @Service
 public class UserService {
 
+    // developper la regex
     private static final String REGEX = "^(.+)@(\\S+)$";
 
     private final UserRepository userRepository;
