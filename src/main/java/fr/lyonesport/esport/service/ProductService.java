@@ -23,10 +23,6 @@ public class ProductService {
     public Product findById(Long id_to_get) {
         Optional<Product> product = productRepository.findById(id_to_get);
         return product.get();
-    private final ProductRepository productRepository;
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
     }
 
     public List<Product> getAll() {
