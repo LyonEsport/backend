@@ -12,9 +12,9 @@ class UserServiceTest {
 
     private final UserRepository userRepository = mock(UserRepository.class);
     
-    void setUp() {
-        when(userRepository.findByEmail("test@mail.com")).thenReturn(createUser());
-    }
+    // void setUp() {
+    //     when(userRepository.findByEmail("test@mail.com")).thenReturn(createUser());
+    // }
     
     @Test
     void user_not_found_in_db_with_email() {
@@ -27,7 +27,7 @@ class UserServiceTest {
     
     }
 
-    User createUser() {
-        return new User();
-    }
+    // User createUser() {
+    //     return new User();
+    // }
 }
