@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
@@ -22,6 +24,6 @@ public class Country {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "fee")
-    private Double fee;
+    @Column(name = "fee", precision = 5, scale = 2)
+    private BigDecimal fee;
 }

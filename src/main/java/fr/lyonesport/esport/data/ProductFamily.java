@@ -27,13 +27,13 @@ public class ProductFamily {
     @Column(name = "sale_quantity")
     private Integer saleQuantity;
 
-    @Column(name = "sale_amount", precision = 25, scale = 2)
+    @Column(name = "sale_amount", precision = 5, scale = 2)
     private BigDecimal saleAmount;
 
-    @Column(name = "online_product_sale", precision = 25, scale = 2)
+    @Column(name = "online_product_sale", precision = 5, scale = 2)
     private BigDecimal onlineProductSale;
 
-    @Column(name = "direct_product_sale", precision = 25, scale = 2)
+    @Column(name = "direct_product_sale", precision = 5, scale = 2)
     private BigDecimal directProductSale;
 
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Bill {
     private LocalDate billDate;
 
     @Column(name = "fee", precision = 15, scale = 2)
-    private Double fee;
+    private BigDecimal fee;
 
     @Column(name = "is_payed", nullable = false)
     private Integer isPayed;

@@ -18,13 +18,13 @@ public class OrderId implements Serializable {
     @Serial
     private static final long serialVersionUID = 5912138230983007622L;
     @Column(name = "id_user", nullable = false)
-    private Integer idUser;
+    private Long idUser;
 
     @Column(name = "id_product", nullable = false)
-    private Integer idProduct;
+    private Long idProduct;
 
     @Column(name = "id_bill", nullable = false)
-    private Integer idBill;
+    private Long idBill;
 
     @Override
     public boolean equals(Object o) {

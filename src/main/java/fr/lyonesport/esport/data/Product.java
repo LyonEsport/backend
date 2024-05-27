@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class Product {
     @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "purchase_price", precision = 15, scale = 2)
-    private Double purchasePrice;
+    @Column(name = "purchase_price", precision = 5, scale = 2)
+    private BigDecimal purchasePrice;
 
-    @Column(name = "sale_price", precision = 15, scale = 2)
-    private Double salePrice;
+    @Column(name = "sale_price", precision = 5, scale = 2)
+    private BigDecimal salePrice;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_product_family", nullable = false)
