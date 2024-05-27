@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -17,7 +16,6 @@ import fr.lyonesport.esport.data.Product;
 import fr.lyonesport.esport.data.ProductFamily;
 import fr.lyonesport.esport.data.Stock;
 import fr.lyonesport.esport.data.StockType;
-import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.ProductFamilyRepository;
 import fr.lyonesport.esport.repository.ProductRepository;
 import fr.lyonesport.esport.repository.StockRepository;
