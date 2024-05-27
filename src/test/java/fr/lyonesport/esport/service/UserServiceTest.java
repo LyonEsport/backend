@@ -52,6 +52,20 @@ class UserServiceTest {
         assertTrue(isGoodFormat);
     }
 
+    @Test
+    void password_not_good_format() {
+        String passwordToTest = "1234";
+        boolean isNotGoodFormat = userService.checkPasswordFormat(passwordToTest);
+        assertFalse(isNotGoodFormat);
+    }
+
+    @Test
+    void passsord_good_format() {
+        String passwordToTest = "H2oCdeLO%*129283";
+        boolean isGoodFormat = userService.checkPasswordFormat(passwordToTest);
+        assertTrue(isGoodFormat);
+    }
+
     Optional<User> createUser() {
         return Optional.of(
             new User(
