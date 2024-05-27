@@ -2,7 +2,11 @@ package fr.lyonesport.esport.service;
 
 import java.util.Optional;
 
+import fr.lyonesport.esport.data.Product;
+import fr.lyonesport.esport.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import fr.lyonesport.esport.data.Product;
 import fr.lyonesport.esport.repository.ProductRepository;
@@ -19,5 +23,9 @@ public class ProductService {
     public Product findById(Long id_to_get) {
         Optional<Product> product = productRepository.findById(id_to_get);
         return product.get();
+    }
+
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 }

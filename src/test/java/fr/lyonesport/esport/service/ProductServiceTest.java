@@ -1,5 +1,11 @@
 package fr.lyonesport.esport.service;
 
+import fr.lyonesport.esport.data.Product;
+import fr.lyonesport.esport.repository.ProductRepository;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
@@ -24,18 +30,26 @@ import fr.lyonesport.esport.repository.StockTypeRepository;
 public class ProductServiceTest {
 
     private final ProductRepository productRepository = mock(ProductRepository.class);
+    private final ProductService productService = new ProductService(productRepository);
+    
     private final ProductFamilyRepository productFamilyRepository = mock(ProductFamilyRepository.class);
     private final StockRepository stockRepository = mock(StockRepository.class);
     private final StockTypeRepository stockTypeRepository = mock(StockTypeRepository.class);
 
-    private final ProductService productService = new ProductService(productRepository);
-    
     @BeforeEach
     void setUp() {
         when(productFamilyRepository.findById(1)).thenReturn(createProductFamily());
         when(stockTypeRepository.findById(1)).thenReturn(createStockType());
         when(stockRepository.findById(1)).thenReturn(createStock());
         when(productRepository.findById(1L)).thenReturn(createProduct());
+    }
+    
+    @Test
+    void get_all_products() {
+        List<Product> products = productService.getAll();
+
+        assertNotNull(products);
+        assertEquals(0, products.size());
     }
     
     @Test
