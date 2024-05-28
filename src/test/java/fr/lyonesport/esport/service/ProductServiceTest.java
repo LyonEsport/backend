@@ -1,10 +1,20 @@
 package fr.lyonesport.esport.service;
 
 import fr.lyonesport.esport.data.Product;
+import fr.lyonesport.esport.data.ProductFamily;
+import fr.lyonesport.esport.data.Stock;
+import fr.lyonesport.esport.data.StockType;
+import fr.lyonesport.esport.repository.ProductFamilyRepository;
 import fr.lyonesport.esport.repository.ProductRepository;
+import fr.lyonesport.esport.repository.StockRepository;
+import fr.lyonesport.esport.repository.StockTypeRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
