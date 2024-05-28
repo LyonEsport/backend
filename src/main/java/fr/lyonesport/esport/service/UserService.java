@@ -2,7 +2,6 @@ package fr.lyonesport.esport.service;
 
 import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.UserRepository;
-import fr.lyonesport.esport.service.exception.UserAlreadyRegistered;
 import fr.lyonesport.esport.service.exception.UserAlreadyRegisteredException;
 import fr.lyonesport.esport.service.exception.UserNotFoundException;
 import fr.lyonesport.esport.service.exception.WrongFormatException;
