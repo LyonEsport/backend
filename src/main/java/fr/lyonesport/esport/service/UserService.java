@@ -2,7 +2,11 @@ package fr.lyonesport.esport.service;
 
 import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.UserRepository;
+import fr.lyonesport.esport.service.exception.UserAlreadyRegistered;
+import fr.lyonesport.esport.service.exception.UserAlreadyRegisteredException;
 import fr.lyonesport.esport.service.exception.UserNotFoundException;
+import fr.lyonesport.esport.service.exception.WrongFormatException;
+
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
@@ -40,6 +44,16 @@ public class UserService {
 
     public boolean checkPasswordFormat(String passwordToTest) {
         return Pattern.compile(REGEX_PASSWORD).matcher(passwordToTest).matches();
+    }
+
+    public void register(User user) throws UserAlreadyRegisteredException, WrongFormatException {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new UserAlreadyRegisteredException();
+        }
+        if (!checkMailFormat(user.getEmail()) || !checkPasswordFormat(user.getPassword())) {
+            throw new WrongFormatException();
+        }
+        add(user);
     }
 
     public void add(User user) {

@@ -7,13 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.nio.file.AccessDeniedException;
 
-@Slf4j
 @RestController
 @RequestMapping("/app/user")
 public class UserController {
@@ -35,4 +35,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    // @PostMapping("/register")
+    // public ResponseEntity<Void> register(@RequestBody User user) {
+    //         userService.find(user.getEmail());
+    //         userService.checkMailFormat(user.getEmail());
+    //         userService.checkPasswordFormat(user.getPassword());
+    // }
 }
