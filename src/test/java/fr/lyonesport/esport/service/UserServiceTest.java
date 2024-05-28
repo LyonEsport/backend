@@ -1,18 +1,17 @@
 package fr.lyonesport.esport.service;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.UserRepository;
 import fr.lyonesport.esport.service.exception.UserNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.AccessDeniedException;
+import java.util.ArrayList;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class UserServiceTest {
 
@@ -46,6 +45,25 @@ class UserServiceTest {
     }
 
     @Test
+    void correct_password() throws UserNotFoundException, AccessDeniedException {
+        String emailToTest = "test@mail.com";
+
+        User user = userService.verify(emailToTest, "lyon");
+
+        assertNotNull(user);
+        assertEquals(emailToTest, user.getEmail());
+    }
+
+    @Test
+    void insert_new_user() {
+        when(userRepository.save(any(User.class))).thenReturn(createUser().get());
+
+        userService.add(createUser().get());
+
+        verify(userRepository, times(1)).save(any(User.class));
+    }
+
+    @Test
     void email_good_format() {
         String emailToTest = "test@mail.com";
         boolean isGoodFormat = userService.checkMailFormat(emailToTest);
@@ -57,7 +75,7 @@ class UserServiceTest {
             new User(
                 1L,
                 "test@mail.com",
-                "",
+                    "lyon",
                 "",
                 "",
                 new ArrayList<>()
