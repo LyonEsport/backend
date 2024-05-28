@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import fr.lyonesport.esport.data.User;
 import fr.lyonesport.esport.repository.UserRepository;
 import fr.lyonesport.esport.service.exception.UserNotFoundException;
+import jakarta.persistence.EntityExistsException;
 
 @Service
 public class UserService {
