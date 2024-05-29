@@ -89,7 +89,7 @@ class UserServiceTest {
             new User(
                 1L,
                 "test@mail.com",
-                    "lyon",
+                "lyon",
                 "",
                 "",
                 new ArrayList<>()

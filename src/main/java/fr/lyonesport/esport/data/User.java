@@ -30,7 +30,7 @@ public class User {
     private String last_name;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String first_name;
 
     @ManyToMany
     @JoinTable(name = "user_address",

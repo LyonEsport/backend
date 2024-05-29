@@ -21,8 +21,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Optional;
 
-class ProductServiceTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import fr.lyonesport.esport.data.Product;
+import fr.lyonesport.esport.data.ProductFamily;
+import fr.lyonesport.esport.data.Stock;
+import fr.lyonesport.esport.data.StockType;
+import fr.lyonesport.esport.repository.ProductFamilyRepository;
+import fr.lyonesport.esport.repository.ProductRepository;
+import fr.lyonesport.esport.repository.StockRepository;
+import fr.lyonesport.esport.repository.StockTypeRepository;
+
+public class ProductServiceTest {
 
     private final ProductRepository productRepository = mock(ProductRepository.class);
     private final ProductService productService = new ProductService(productRepository);
